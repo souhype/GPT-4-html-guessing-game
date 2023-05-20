@@ -1,51 +1,100 @@
 <html>
-<head>
-<title>Guessing Game</title>
-<style>
-/* Add some CSS style here */
-</style>
-</head>
-<body>
-<h1>Guessing Game</h1>
-<p>Try to guess the number that the computer has chosen between 1 and 10.</p>
-<form id="user-form" onsubmit="checkGuess(); return false;">
-<input id="user-input" type="text" placeholder="Enter your guess here">
-<button type="submit">Check</button>
-</form>
-<p id="result"></p>
-<script>
-// Generate a random number between 1 and 10
-var answer = Math.floor(Math.random() * 10) + 1;
+  <head>
+    <title>Guessing Game</title>
+    <style>
+      /* Add some CSS style here */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
 
-// Get the user input element
-var input = document.getElementById("user-input");
+      h1 {
+        color: #333;
+        text-align: center;
+      }
 
-// Get the result element
-var result = document.getElementById("result");
+      p {
+        color: #333;
+        text-align: center;
+      }
 
-// Define a function to check the user's guess
-function checkGuess() {
-  // Get the user's guess from the input element
-  var guess = parseInt(input.value);
+      input {
+        width: 200px;
+        height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 10px auto;
+        display: block;
+        padding: 0.5 0.75rem;
+      }
 
-  // Clear the input element
-  input.value = "";
+      button {
+        width: 100px;
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: #fff;
+        margin: 10px auto;
+        display: block;
+      }
 
-  // Check if the guess is valid
-  if (isNaN(guess) || guess < 1 || guess > 10) {
-    // Display an error message
-    result.innerHTML = "Please enter a valid number between 1 and 10.";
-  } else {
-    // Check if the guess matches the answer
-    if (guess === answer) {
-      // Display a success message
-      result.innerHTML = "You got it! The answer was " + answer + ".";
-    } else {
-      // Display a hint message
-      result.innerHTML = "Sorry, that's not it. The answer is " + (guess < answer ? "higher" : "lower") + " than " + guess + ".";
-    }
-  }
-}
-</script>
-</body>
+      #result {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Guessing Game</h1>
+    <p>
+      Try to guess the number that the computer has chosen between 1 and 10.
+    </p>
+    <form id="user-form" onsubmit="checkGuess(); return false;">
+      <input id="user-input" type="text" placeholder="Enter your guess here" />
+      <button type="submit">Check</button>
+    </form>
+    <p id="result"></p>
+    <script>
+      // Generate a random number between 1 and 10
+      var answer = Math.floor(Math.random() * 10) + 1;
+
+      // Get the user input element
+      var input = document.getElementById("user-input");
+
+      // Get the result element
+      var result = document.getElementById("result");
+
+      // Define a function to check the user's guess
+      function checkGuess() {
+        // Get the user's guess from the input element
+        var guess = parseInt(input.value);
+
+        // Clear the input element
+        input.value = "";
+
+        // Check if the guess is valid
+        if (isNaN(guess) || guess < 1 || guess > 10) {
+          // Display an error message
+          result.innerHTML = "Please enter a valid number between 1 and 10.";
+          result.style.color = "red";
+        } else {
+          // Check if the guess matches the answer
+          if (guess === answer) {
+            // Display a success message
+            result.innerHTML = "You got it! The answer was " + answer + ".";
+            result.style.color = "green";
+          } else {
+            // Display a hint message
+            result.innerHTML =
+              "Sorry, that's not it. The answer is " +
+              (guess < answer ? "higher" : "lower") +
+              " than " +
+              guess +
+              ".";
+            result.style.color = "orange";
+          }
+        }
+      }
+    </script>
+  </body>
 </html>
